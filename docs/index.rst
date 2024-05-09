@@ -9,10 +9,11 @@ Welcome to Sphinx Demo's documentation!
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
-
-   calculator
    
+   overview
+   calculator
    helloworld
+   auto_examples/index
 
 
 Indices and tables

@@ -31,6 +31,7 @@ For installation options not mentioned, refer to the `documentation <https://www
 2. The repo's folder structure should have a ``docs`` and ``src`` folder.
 
 ``docs`` contain your files for Sphinx documentation. ``src`` should contain your code.
+``examples`` contain some example modules.
 
 In this guide, the ``src`` folder should have a **calculator.py** and **helloworld.py** file for demo purposes.
 
@@ -157,7 +158,7 @@ This tutorial uses a Sphinx theme called `Read the Docs <https://sphinx-themes.o
 
 1. To install, run ``pip install sphinx-rtd-theme``.
 
-2. In the **conf.py** file, change the `html_theme` tag to `sphinx_rtd_theme`.
+2. In the **conf.py** file, change to ``html_theme = sphinx_rtd_theme``.
 
   You can find more themes at various sources like `www.sphinx-themes.org/`,
   `https://sphinxthemes.com`, etc.
@@ -169,7 +170,7 @@ This tutorial uses a Sphinx theme called `Read the Docs <https://sphinx-themes.o
 
 2. Run ``make html``. The result will be in **docs/_build/html**.
 
-3. To view your build, go to **docs/_build/html**. Open **index.html**, which shows you the homepage for your documentation.
+3. To preview your website, go to **docs/_build/html**. Open **index.html**, which shows you the homepage for your documentation.
 
 4. If you make any changes to your code or documentation, simply run ``make html`` again from the **docs** folder to update your documentation.
 
@@ -179,6 +180,11 @@ This tutorial uses a Sphinx theme called `Read the Docs <https://sphinx-themes.o
 The default options in Sphinx produce a great template, but you want to add and adjust content in order to produce a better website.
 
 To add other pages to your Sphinx website, simply create `.rst` files in ``docs``, then add them to the ``toctree`` of ``index.rst``, or to the ``toctree`` of a file listed/included in ``index.rst``.
+
+Below are some examples of what you can add to the documentation.
+
+7.1. Showing More Content on Homepage
+--------------------------------------
 
 For example, when you view your homepage, you will only see the index menu and not the content of your code.
 To see the contents of your modules, open ``index.rst`` and manually add `.rst` file names to Contents:
@@ -195,6 +201,92 @@ To see the contents of your modules, open ``index.rst`` and manually add `.rst` 
 
 Now, when you run ``make html`` again, you will see the homepage showing the ``calculator`` and ``helloworld`` modules' content.
 You can also move back and forth between the sections of the documentation using the "Next" or "Previous" buttons.
+
+7.2. Adding Another Section
+---------------------------
+
+Let's create a section called Demo Modules Overview, where we can write more explanation on the code. 
+
+1. In ``docs``, create a file called **overview.rst**, **overview.calculator.rst** and **overview.helloworld.rst**.
+For this turorial, simply copy the files from the ``docs`` folder of `this <https://github.com/elpham6/sphinx_demo/tree/main/docs>`_ repo to your own repo.
+
+2. To add this Demo Modules Overview section, open **index.rst**. Add **overview** to the top of the ``toctree``.
+
+.. code-block:: rst
+
+    .. toctree::
+      :maxdepth: 4
+      :caption: Contents:
+      
+      overview
+
+      calculator
+
+      helloworld
+  
+3. Run ``make html`` from ``docs`` again. 
+
+4. Go to ``docs/_build/html`` and view the results. 
+
+You will see a new section called "Demo Modules Overview" with an index, showing content from **overview.calculator.rst** and **overview.helloworld.rst**.
+It is easy to add new pages and new sections to the website.
+
+7.3. Adding Examples
+--------------------
+
+Let's create a section for some example codes. We will use ``sphinx_gallery`` extension here.
+
+1. Install sphinx_gallery: ``pip install sphinx_gallery``.
+
+2. Open **conf.py**. Add "sphinx_gallery.gen_gallery" to the ``extensions`` list.
+
+3. Add the sphinx_gallery config to **conf.py**:
+
+.. code-block:: python
+          
+    sphinx_gallery_conf = {
+    # path to your example scripts
+    'examples_dirs': ['../examples'],
+    # path to where to save gallery generated output
+    'gallery_dirs': ['auto_examples'],
+    'filename_pattern': '.py',
+    'plot_gallery': 'False',
+    }
+
+4. In the ``examples`` folder, create a **README.rst** or **README.txt** file. 
+You can add anything; it is just a requirement for sphinx_gallery. For example:
+
+.. code-block:: rst
+
+    Calculator Examples
+    ###################
+
+    This folder contains example code for the **calculator.py** module.
+
+5. In ``docs/index.rst``, add the new automatically created index file:
+
+.. code-block:: rst
+
+    .. toctree::
+      :maxdepth: 4
+      :caption: Contents:
+      
+      overview
+
+      calculator
+
+      helloworld
+
+      auto_examples/index
+
+6. From ``docs``, run ``make html`` again. 
+
+You can now see the example code, with links to download the module. 
+
+**Note**: the docstring at the top of **calc_example.py** is in .rst format. That is because Sphinx automatically generates a .rst file from the .py file.
+You can see that this docstring became the title and content of the page. This leaves room for you to add more documentation or diagrams.  
+
+There are a lot of other things you can do with Sphinx to customize your documentation website.
 
 * For more instructions on defining document structure, refer to
   `Defining Docuement Structure <https://www.sphinx-doc.org/en/master/usage/quickstart.html#defining-document-structure>`_.
@@ -284,6 +376,8 @@ This streamlines the process of keeping your documentation up-to-date.
             uses: actions/deploy-pages@v4
 
 This makes sure that the documentation will be built and updated onto the GitHub page url only when you push changes on to your **main** branch.
+You no longer need a ``_build`` folder at this point, as the .yml script performs this action automatically every time you push to **main**, then uploads the content of ``_build/html`` to the website. 
+
 If you add any more Sphinx extensions that needs to be installed, simply add the dependency to the "Setup Sphinx" step in the .yml file.
 
 For example, ``pip install sphinx sphinx_rtd_theme`` means that the action will install sphinx, and sphinx_rtd_theme.

@@ -20,6 +20,7 @@ extensions = [
         "sphinx.ext.autodoc",
         "sphinx.ext.napoleon",
         "sphinx.ext.linkcode",
+        "sphinx_gallery.gen_gallery"
     ]
 
 templates_path = ['_templates']
@@ -49,3 +50,13 @@ def linkcode_resolve(domain, info):
     filename = info['module'].replace('.', '/')
     # return "https://somesite/sourcerepo/%s.py" % filename
     return f"https://github.com/{html_context['github_user']}/{html_context['github_repo']}/blob/{html_context['github_version']}/{html_context['conf_py_path']}/{filename}.py"
+
+sphinx_gallery_conf = {
+    # path to your example scripts
+    'examples_dirs': ['../examples'],
+    # path to where to save gallery generated output
+    'gallery_dirs': ['auto_examples'],
+    'filename_pattern': '.py',
+    'plot_gallery': 'False',
+    }
+
