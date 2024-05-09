@@ -26,18 +26,12 @@ For installation options not mentioned, refer to the `documentation <https://www
 2. Create a Git repository
 ==========================
 
-- Create a Git repository using this `template <https://github.com/new?template_name=sphinx_template&template_owner=elpham6>`_. Put whatever name you would like for the Repository name, and click Create repository.
+1. Create a Git repository using this `template <https://github.com/new?template_name=sphinx_template&template_owner=elpham6>`_. Put whatever name you would like for the Repository name, and click Create repository.
 
-- The repo's folder structure should look like this:
-.
-├── README.md
-├── docs
-│   └── readme.txt
-└── src
-    ├── calculator.py
-    └── helloworld.py
+2. The repo's folder structure should have a ``docs`` and ``src`` folder.
 
-- ``docs`` contain your files for Sphinx documentation. ``src`` should contain your code.
+``docs`` contain your files for Sphinx documentation. ``src`` should contain your code.
+
 In this guide, the ``src`` folder should have a **calculator.py** and **helloworld.py** file for demo purposes.
 
 **Note on folder structure**: You can employ different directory structures depending on the need for your project. Search for existing packages and Git repo conventions guides, such as `this <https://github.com/kriasoft/Folder-Structure-Conventions>`_
@@ -55,7 +49,7 @@ Either, you use a directory "_build" within the root path, or you separate
 "source" and "build" directories within the root path.
 **Separate source and build directories (y/n) [n]:**
 
-Select `n`; it is recommended to have the /docs directory separate.
+Select `n`; it is recommended to have the ``docs`` directory separate.
 
 2. **Project name**: enter your project name here
 
@@ -84,8 +78,8 @@ This will create .rst files for each Python module in the specified ``package_di
 
 Open **conf.py** in the **docs** folder. You can see all the default configurations here.
 
-5.1 OS Syspath Change
-*********************
+5.1. OS Syspath Change
+---------------------
 
 Add the following to the beginning of **conf.py**:
 
@@ -95,20 +89,29 @@ Add the following to the beginning of **conf.py**:
     import sys
     sys.path.insert(0, os.path.abspath("../src"))
 
-**Note**: This assumes the folder structure of `this` demo repo. If you have a different structure, make sure to replace ``"../src"`` with the path to the code you would like to make documentation for.
+**Note**: This assumes the folder structure of the template repo. If you have a different structure, make sure to replace ``"../src"`` with the path to the code you would like to make documentation for.
 
-5.2 Adding Extensions
-*********************
+5.2. Adding Extensions
+-----------------------
 
 Sphinx has many useful extensions, which you can check out `here <https://www.sphinx-doc.org/en/master/usage/extensions/index.html>`_.
 
 For this tutorial, add the following extensions to the ``extensions`` list:
 
-1. ``sphinx.ext.autodoc``: automatically takes doc strings from your Python files
+- ``sphinx.ext.autodoc``: automatically takes doc strings from your Python files
 
-2. ``sphinx.ext.linkcode``: provides a link to the source code on GitHub. Note that this requires more config specifications, which you can refer to `here <https://www.sphinx-doc.org/en/master/usage/extensions/linkcode.html>`_.
+- ``sphinx.ext.napoleon``:  understand NumPy or Google doc string standards and format them nicely. If you write your doc strings using Numpy or Google standard, you need this
+   extension.
 
-This guide assumes we want to get HTML output. Add the following dictionary ``html_context`` to pass to ``linkcode`` config:
+  Since this example uses Google-style doc string, add:
+
+    `` napoleon_google_docstring = True ``
+
+  to the **conf.py** file.
+
+- ``sphinx.ext.linkcode``: provides a link to the source code on GitHub. Note that this requires more config specifications, which you can refer to `here <https://www.sphinx-doc.org/en/master/usage/extensions/linkcode.html>`_.
+
+  This guide assumes we want to get HTML output. Add the following dictionary ``html_context`` to pass to ``linkcode`` config:
 
 .. code-block:: python
 
@@ -120,7 +123,8 @@ This guide assumes we want to get HTML output. Add the following dictionary ``ht
     "conf_py_path": ".",  # Path in the checkout to the docs root
     }
 
-Then, add the ``linkcode`` settings:
+  
+  Then, add the ``linkcode`` settings:
 
 .. code-block:: python
 
@@ -135,14 +139,7 @@ Then, add the ``linkcode`` settings:
 
 Adjust the config according to your folder structure and names. If you would like a different type of output, refer to Sphinx's `configuration documentation <https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output>`_.
 
-3. ``sphinx.ext.napoleon``:  understand NumPy or Google doc string standards and format them nicely. If you write your doc strings using Numpy or Google standard, you need this
-   extension.
 
-Since this example uses Google-style doc string, add:
-
-`` napoleon_google_docstring = True ``
-
-to the **conf.py** file.
 
 The resulting ``extensions`` list should look like this:
 
@@ -156,7 +153,7 @@ The resulting ``extensions`` list should look like this:
 
 
 5.3 Theme (Optional)
-********************
+--------------------
 
 The default theme for the output is Alabaster.
 
@@ -166,8 +163,8 @@ This tutorial uses a Sphinx theme called `Read the Docs <https://sphinx-themes.o
 
 2. In the **conf.py** file, change the `html_theme` tag to `sphinx_rtd_theme`.
 
-You can find more themes at various sources like `www.sphinx-themes.org/`,
-`https://sphinxthemes.com`, etc.
+  You can find more themes at various sources like `www.sphinx-themes.org/`,
+  `https://sphinxthemes.com`, etc.
 
 6. Building Documentation
 =========================
@@ -185,12 +182,12 @@ You can find more themes at various sources like `www.sphinx-themes.org/`,
 
 The default options in Sphinx produce a great template, but you want to add and adjust content in order to produce a better website.
 
-To add other pages to your Sphinx website, simply create `.rst` files in the appropriate location, then add them to the `toctree` of `index.rst`, or to the `toctree` of a file listed/included in `index.rst`.
+To add other pages to your Sphinx website, simply create `.rst` files in the appropriate location, then add them to the ``toctree`` of ``index.rst``, or to the ``toctree`` of a file listed/included in ``index.rst``.
 
 For example, when you view your homepage, you will only see the index menu and not the content of your code.
-To see the contents of your modules, open `index.rst` and manually add .rst file names to Contents:
+To see the contents of your modules, open ``index.rst`` and manually add `.rst` file names to Contents:
 
-..code-block :: rst
+.. code-block:: rst
 
     .. toctree::
       :maxdepth: 4
@@ -212,11 +209,11 @@ You can also move back and forth between the sections of the documentation using
 8. Deploying to GitHub Pages
 ============================
 
-To automatically update the documentation on the website whenever you update your work, one way to do it is set up GitHub Action to trigger every time you push changes to the repository.
+To automatically update the documentation on the website whenever you update your work, one way to do it is set up GitHub Action to trigger every time you push changes to the **main** branch of your repo.
 This streamlines the process of keeping your documentation up-to-date.
 
 8.1. Enable GitHub Pages
-*************************
+-------------------------
 1. In your GitHub repository, click on **Settings**.
 
 2. On the menu, under "Code and automation", click on **Pages**.
@@ -224,13 +221,13 @@ This streamlines the process of keeping your documentation up-to-date.
 3. In the "Source" drop down menu, choose "GitHub Actions".
 
 8.2. Set Up GitHub Actions
-**************************
+--------------------------
 
 1. Move to the root directory of the repo.
 
 2. Create a folder called `.github`. Then within the folder, create another folder called `workflows`.
 
-3. Move to `.github/workflows/`.
+3. Move to ``.github/workflows/``.
 
 4. Create a .yml file, name it "sphinx-gitpg.yml".
 
@@ -295,9 +292,11 @@ If you add any more Sphinx extensions that needs to be installed, simply add the
 
 For example, ``pip install sphinx sphinx_rtd_theme`` means that the action will install sphinx, and sphinx_rtd_theme.
 
-6. To check the result, go to <https://user_name.github.io/sphinx_demo/>, replace user_name with your GitHub username.
+8.3. Check the Documentation Results
+-------------------------------------
+To check the result, go to https://user_name.github.io/sphinx_demo/, replace user_name with your GitHub username.
 
-Also, if something fails, you can click on the "Actions" tab from the repository, and check the error.
+Also, if something fails, you can click on the "Actions" tab from the repository, and check for the error.
 
 Now, if you make any changes and then push to the **main** branch of the repository, the website will automatically update the documentation.
 
