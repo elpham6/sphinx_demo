@@ -76,7 +76,7 @@ This will create .rst files for each Python module in the specified ``package_di
 5. Config Specifications
 ========================
 
-Open **conf.py** in the **docs** folder. You can see all the default configurations here.
+Open **conf.py** in the ``docs`` folder. You can see all the default configurations here.
 
 5.1. OS Syspath Change
 -----------------------
@@ -145,7 +145,7 @@ For this tutorial, add the following extensions to the ``extensions`` list in **
     # link to the source module/code on github
     return f"https://github.com/{html_context['github_user']}/{html_context['github_repo']}/blob/{html_context['github_version']}/{html_context['conf_py_path']}/{filename}.py"
 
-Adjust the config according to your folder structure and names. If you would like a different type of output, refer to Sphinx's `configuration documentation <https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output>`_.
+Adjust the config according to your folder structure and names. If you would like an output other than HTML, refer to Sphinx's `configuration documentation <https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output>`_.
 
 
 5.3 Theme (Optional)
@@ -178,7 +178,7 @@ This tutorial uses a Sphinx theme called `Read the Docs <https://sphinx-themes.o
 
 The default options in Sphinx produce a great template, but you want to add and adjust content in order to produce a better website.
 
-To add other pages to your Sphinx website, simply create `.rst` files in the appropriate location, then add them to the ``toctree`` of ``index.rst``, or to the ``toctree`` of a file listed/included in ``index.rst``.
+To add other pages to your Sphinx website, simply create `.rst` files in ``docs``, then add them to the ``toctree`` of ``index.rst``, or to the ``toctree`` of a file listed/included in ``index.rst``.
 
 For example, when you view your homepage, you will only see the index menu and not the content of your code.
 To see the contents of your modules, open ``index.rst`` and manually add `.rst` file names to Contents:
@@ -221,7 +221,7 @@ This streamlines the process of keeping your documentation up-to-date.
 
 1. Move to the root directory of the repo.
 
-2. Create a folder called `.github`. Then within the folder, create another folder called `workflows`.
+2. Create a folder called ``.github``. Then within the folder, create another folder called ``workflows``.
 
 3. Move to ``.github/workflows/``.
 
