@@ -118,13 +118,15 @@ For this tutorial, add the following extensions to the ``extensions`` list in **
 
     html_context = {
     "display_github": True,  # Integrate GitHub
-    "github_user": "elpham6",  # Username of repo's owner
+    "github_user": "user_name",  # Username of repo's owner
     "github_repo": "sphinx_demo",  # Repo name
     "github_version": "main",  # Version
     "conf_py_path": "/src/",  # Path in the checkout to the code's root
     }
 
   
+  
+  Make sure to change "user_name" to your username or the name of the repo owner.
   
   Then, add the ``linkcode`` settings:
 
