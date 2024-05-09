@@ -43,11 +43,9 @@ In this guide, the ``src`` folder should have a **calculator.py** and **hellowor
 
 - Run ``sphinx-quickstart``. You will be prompted with the following:
 
-1. You have two options for placing the build directory for Sphinx output. Either, you use a directory "_build" within the root path, or you separate
-  "source" and "build" directories within the root path.
-  **Separate source and build directories (y/n) [n]**:
+1. **Separate source and build directories (y/n) [n]**:
 
-  Select `n`; it is recommended to have the ``docs`` directory separate.
+  Select `n`.
 
 2. **Project name**: enter your project name here
 
