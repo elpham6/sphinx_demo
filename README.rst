@@ -357,7 +357,7 @@ This streamlines the process of keeping your documentation up-to-date.
               python-version: '3.11'
           - name: Setup Sphinx
             run: |
-              pip install sphinx sphinx_rtd_theme
+              pip install sphinx sphinx_rtd_theme sphinx_gallery
           - name: Sphinx Build
             run: |
               cd 'docs'
