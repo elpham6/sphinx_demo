@@ -65,5 +65,3 @@ def divide(x, y):
         ZeroDivisionError: error when the divisor is 0
     """
     return x / y
-
-a = divide(10,2)

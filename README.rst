@@ -96,7 +96,15 @@ Add the following to the beginning of **conf.py**:
 
 Sphinx has many useful extensions, which you can check out `here <https://www.sphinx-doc.org/en/master/usage/extensions/index.html>`_.
 
-For this tutorial, add the following extensions to the ``extensions`` list:
+For this tutorial, add the following extensions to the ``extensions`` list in **conf.py**:
+
+.. code-block:: python
+
+    extensions = [
+        "sphinx.ext.autodoc",
+        "sphinx.ext.napoleon",
+        "sphinx.ext.linkcode",
+      ]
 
 - ``sphinx.ext.autodoc``: automatically takes doc strings from your Python files
 
@@ -139,18 +147,6 @@ For this tutorial, add the following extensions to the ``extensions`` list:
 Adjust the config according to your folder structure and names. If you would like a different type of output, refer to Sphinx's `configuration documentation <https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output>`_.
 
 
-
-The resulting ``extensions`` list should look like this:
-
-.. code-block:: python
-
-    extensions = [
-        "sphinx.ext.autodoc",
-        "sphinx.ext.napoleon",
-        "sphinx.ext.linkcode",
-      ]
-
-
 5.3 Theme (Optional)
 --------------------
 
@@ -168,7 +164,7 @@ This tutorial uses a Sphinx theme called `Read the Docs <https://sphinx-themes.o
 6. Building Documentation
 =========================
 
-1. Change directory to the `docs` folder.
+1. Change directory to the ``docs`` folder.
 
 2. Run ``make html``. The result will be in **docs/_build/html**.
 

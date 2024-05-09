@@ -36,7 +36,7 @@ html_context = {
     "github_user": "elpham6",  # Username of repo's owner
     "github_repo": "sphinx_demo",  # Repo name
     "github_version": "main",  # Version
-    "conf_py_path": ".",  # Path in the checkout to the docs root
+    "conf_py_path": "/src",  # Path in the checkout to the docs root
 }
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
