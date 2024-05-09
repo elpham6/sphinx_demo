@@ -43,9 +43,7 @@ In this guide, the ``src`` folder should have a **calculator.py** and **hellowor
 
 - Run ``sphinx-quickstart``. You will be prompted with the following:
 
-1. **Separate source and build directories (y/n) [n]**:
-
-  Select `n`.
+1. **Separate source and build directories (y/n) [n]**: Select `n`.
 
 2. **Project name**: enter your project name here
 
@@ -127,6 +125,7 @@ For this tutorial, add the following extensions to the ``extensions`` list in **
     }
 
   
+  
   Then, add the ``linkcode`` settings:
 
 .. code-block:: python
@@ -181,7 +180,7 @@ Below are some examples of what you can add to the documentation.
 7.1. Showing More Content on Homepage
 --------------------------------------
 
-For example, when you view your homepage, you will only see the index menu and not the content of your code.
+By default, when you view your homepage, you will only see the index menu and not the content of your code.
 To see the contents of your modules, open ``index.rst`` and manually add `.rst` file names to Contents:
 
 .. code-block:: rst
