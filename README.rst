@@ -100,8 +100,7 @@ For this tutorial, add the following extensions to the ``extensions`` list:
 
 - ``sphinx.ext.autodoc``: automatically takes doc strings from your Python files
 
-- ``sphinx.ext.napoleon``:  understand NumPy or Google doc string standards and format them nicely. If you write your doc strings using Numpy or Google standard, you need this
-   extension.
+- ``sphinx.ext.napoleon``:  understand NumPy or Google doc string standards and format them nicely. If you write your doc strings using Numpy or Google standard, you need this extension.
 
   Since this example uses Google-style doc string, add:
 
