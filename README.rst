@@ -26,11 +26,16 @@ For installation options not mentioned, refer to the `documentation <https://www
 2. Create a Git repository
 ==========================
 
-- Create a Git repository using this `template <>`_. Simply put the name of the repo, and click (...).
+- Create a Git repository using this `template <https://github.com/new?template_name=sphinx_template&template_owner=elpham6>`_. Put whatever name you would like for the Repository name, and click Create repository.
 
 - The repo's folder structure should look like this:
-
-(insert)
+.
+├── README.md
+├── docs
+│   └── readme.txt
+└── src
+    ├── calculator.py
+    └── helloworld.py
 
 - ``docs`` contain your files for Sphinx documentation. ``src`` should contain your code.
 In this guide, the ``src`` folder should have a **calculator.py** and **helloworld.py** file for demo purposes.
@@ -69,10 +74,10 @@ This will create a default configuration ``conf.py`` file, the make files and ``
 
 - Run ``sphinx-apidoc -o output_dir package_dir``
 
-Here, `-o` flag is for the ``output_dir``, which is ``docs`` in this case, and `package_dir` is the directory with all the modules you want to document.
+Here, `-o` flag is for the ``output_dir``, which is ``docs`` in this case, and ``package_dir`` is the directory with all the modules you want to document.
 In this case, it is ``src``.
 
-This will create .rst files for each Python module in the specified `package_dir`.
+This will create .rst files for each Python module in the specified ``package_dir``.
 
 5. Config Specifications
 ========================
@@ -84,10 +89,11 @@ Open **conf.py** in the **docs** folder. You can see all the default configurati
 
 Add the following to the beginning of **conf.py**:
 
-::
-import os
-import sys
-sys.path.insert(0, os.path.abspath("../src"))
+.. code-block:: python
+
+    import os
+    import sys
+    sys.path.insert(0, os.path.abspath("../src"))
 
 **Note**: This assumes the folder structure of `this` demo repo. If you have a different structure, make sure to replace ``"../src"`` with the path to the code you would like to make documentation for.
 
@@ -156,9 +162,9 @@ The default theme for the output is Alabaster.
 
 This tutorial uses a Sphinx theme called `Read the Docs <https://sphinx-themes.org/sample-sites/sphinx-rtd-theme/>`_, which has a much better format than the default.
 
-To install, run ``pip install sphinx-rtd-theme``.
+1. To install, run ``pip install sphinx-rtd-theme``.
 
-In the **conf.py** file, change the `html_theme` tag to `sphinx_rtd_theme`.
+2. In the **conf.py** file, change the `html_theme` tag to `sphinx_rtd_theme`.
 
 You can find more themes at various sources like `www.sphinx-themes.org/`,
 `https://sphinxthemes.com`, etc.
@@ -166,13 +172,13 @@ You can find more themes at various sources like `www.sphinx-themes.org/`,
 6. Building Documentation
 =========================
 
-- Change directory to the `docs` folder.
+1. Change directory to the `docs` folder.
 
-- Run ``make html``. The result will be in **docs/_build/html**.
+2. Run ``make html``. The result will be in **docs/_build/html**.
 
-- To view your build, go to **docs/_build/html**. Open **index.html**, which shows you the homepage for your documentation.
+3. To view your build, go to **docs/_build/html**. Open **index.html**, which shows you the homepage for your documentation.
 
-- If you make any changes to your code or documentation, simply run ``make html`` again from the **docs** folder to update your documentation.
+4. If you make any changes to your code or documentation, simply run ``make html`` again from the **docs** folder to update your documentation.
 
 7. Adding More Pages
 =====================
@@ -184,23 +190,24 @@ To add other pages to your Sphinx website, simply create `.rst` files in the app
 For example, when you view your homepage, you will only see the index menu and not the content of your code.
 To see the contents of your modules, open `index.rst` and manually add .rst file names to Contents:
 
-::
-.. toctree::
-   :maxdepth: 4
-   :caption: Contents:
+..code-block :: rst
 
-   calculator
+    .. toctree::
+      :maxdepth: 4
+      :caption: Contents:
 
-   helloworld
+      calculator
+
+      helloworld
 
 Now, when you run ``make html`` again, you will see the homepage showing the ``calculator`` and ``helloworld`` modules' content.
 You can also move back and forth between the sections of the documentation using the "Next" or "Previous" buttons.
 
 * For more instructions on defining document structure, refer to
-  `Defining Docuement Structure <https://www.sphinx-doc.org/en/master/usage/quickstart.html#defining-document-structure>`_
+  `Defining Docuement Structure <https://www.sphinx-doc.org/en/master/usage/quickstart.html#defining-document-structure>`_.
 
 * For instructions on how to format reStructuredText, refer to
-  `reStructuredText Basics <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_
+  `reStructuredText Basics <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_.
 
 8. Deploying to GitHub Pages
 ============================
@@ -231,61 +238,65 @@ This streamlines the process of keeping your documentation up-to-date.
 
 .. code-block:: yaml
 
-  name: Docs build and upload
+    name: Docs build and upload
 
-  on:
-    push:
-      branches:
-        - main
+    on:
+      push:
+        branches:
+          - main
 
-    workflow_dispatch:
+      workflow_dispatch:
 
-  permissions:
-    contents: read
-    pages: write
-    id-token: write
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
 
-  concurrency:
-    group: "pages"
-    cancel-in-progress: false
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
 
-  jobs:
-    docs:
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v4
+    jobs:
+      docs:
+        environment:
+          name: github-pages
+          url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v4
 
-        - name: Setup Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.11'
-        - name: Setup Sphinx
-          run: |
-            pip install sphinx sphinx_rtd_theme
-        - name: Sphinx Build
-          run: |
-            cd 'docs'
-            make html
+          - name: Setup Python
+            uses: actions/setup-python@v5
+            with:
+              python-version: '3.11'
+          - name: Setup Sphinx
+            run: |
+              pip install sphinx sphinx_rtd_theme
+          - name: Sphinx Build
+            run: |
+              cd 'docs'
+              make html
 
-        - name: Setup Pages
-          uses: actions/configure-pages@v5
+          - name: Setup Pages
+            uses: actions/configure-pages@v5
 
-        - name: Upload GitHub Pages Artifact
-          uses: actions/upload-pages-artifact@v3
-          with:
-            path: "docs/_build/html"
+          - name: Upload GitHub Pages Artifact
+            uses: actions/upload-pages-artifact@v3
+            with:
+              path: "docs/_build/html"
 
-        - name: Deploy GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v4
+          - name: Deploy GitHub Pages
+            id: deployment
+            uses: actions/deploy-pages@v4
 
 This makes sure that the documentation will be built and updated onto the GitHub page url only when you push changes on to your **main** branch.
+If you add any more Sphinx extensions that needs to be installed, simply add the dependency to the "Setup Sphinx" step in the .yml file.
 
-6. To check the result, go to ``https://user_name.github.io/sphinx_demo/``, replace user_name with your GitHub username.
+For example, ``pip install sphinx sphinx_rtd_theme`` means that the action will install sphinx, and sphinx_rtd_theme.
+
+6. To check the result, go to <https://user_name.github.io/sphinx_demo/>, replace user_name with your GitHub username.
+
 Also, if something fails, you can click on the "Actions" tab from the repository, and check the error.
 
 Now, if you make any changes and then push to the **main** branch of the repository, the website will automatically update the documentation.
