@@ -19,6 +19,7 @@ Tutorial
 - For Anaconda, open the Anaconda terminal and run ``conda install sphinx``
 
 To ``pip`` install:
+
 - For Linux, macOS or Windows, run ``pip install -U sphinx``
 
 For installation options not mentioned, refer to the `documentation <https://www.sphinx-doc.org/en/master/usage/installation.html>`_ for more information.
