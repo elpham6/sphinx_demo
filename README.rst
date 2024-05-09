@@ -73,7 +73,7 @@ This will create .rst files for each Python module in the specified ``package_di
 Open **conf.py** in the ``docs`` folder. You can see all the default configurations here.
 
 5.1. OS Syspath Change
------------------------
+-------------------------
 
 Add the following to the beginning of **conf.py**:
 
