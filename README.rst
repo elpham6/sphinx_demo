@@ -252,6 +252,7 @@ Let's create a section for some example codes. We will use ``sphinx_gallery`` ex
     'plot_gallery': 'False',
     }
 
+
 4. In the ``examples`` folder, create a **README.rst** or **README.txt** file. 
 A readme file is necessary for sphinx_gallery to generate documentation. Copy/paste this text:
 
@@ -261,6 +262,7 @@ A readme file is necessary for sphinx_gallery to generate documentation. Copy/pa
     ###################
 
     This folder contains example code for the **calculator.py** module.
+
 
 5. From ``docs``, run ``make html``. There is a new folder called ``auto_examples`` created in ``docs``, with all the generated
 documentation for modules in the ``examples`` folder.
