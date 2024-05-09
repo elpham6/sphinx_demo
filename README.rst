@@ -19,7 +19,7 @@ Tutorial
 To ``pip`` install:
 - For Linux, macOS or Windows, run ``pip install -U sphinx``
 
-(It is recommended that you use a virtual environment when you pip install. To create a virtual environment in the ``.venv`` directory, run ``python -m venv .venv``.
+(It is recommended that you use a virtual environment when you pip install. To create a virtual environment in the ``.venv`` directory, run ``python -m venv .venv``.)
 
 For installation options not mentioned, refer to the `documentation <https://www.sphinx-doc.org/en/master/usage/installation.html>`_ for more information.
 
@@ -32,7 +32,8 @@ For installation options not mentioned, refer to the `documentation <https://www
 
 (insert)
 
-- ``docs`` contain your files for Sphinx documentation. ``src`` should contain your source code and ``tests`` should contain tests for your code.
+- ``docs`` contain your files for Sphinx documentation. ``src`` should contain your code.
+In this guide, the ``src`` folder should have a **calculator.py** and **helloworld.py** file for demo purposes.
 
 **Note on folder structure**: You can employ different directory structures depending on the need for your project. Search for existing packages and Git repo conventions guides, such as `this <https://github.com/kriasoft/Folder-Structure-Conventions>`_
 for more references.
@@ -208,7 +209,7 @@ To automatically update the documentation on the website whenever you update you
 This streamlines the process of keeping your documentation up-to-date.
 
 8.1. Enable GitHub Pages
-***********************
+*************************
 1. In your GitHub repository, click on **Settings**.
 
 2. On the menu, under "Code and automation", click on **Pages**.
@@ -228,70 +229,73 @@ This streamlines the process of keeping your documentation up-to-date.
 
 5. To set up the configuration for the GitHub Action, copy and paste the following into the .yml file:
 
-::
-name: Docs build and upload
+.. code-block:: yaml
 
-on:
-  push:
-    branches:
-      - main
+  name: Docs build and upload
 
-  workflow_dispatch:
+  on:
+    push:
+      branches:
+        - main
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    workflow_dispatch:
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  permissions:
+    contents: read
+    pages: write
+    id-token: write
 
-jobs:
-  docs:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  concurrency:
+    group: "pages"
+    cancel-in-progress: false
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+  jobs:
+    docs:
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
 
-      - name: Sphinx Build
-        run: |
-          cd 'docs'
-          make html
+        - name: Setup Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.11'
+        - name: Setup Sphinx
+          run: |
+            pip install sphinx sphinx_rtd_theme
+        - name: Sphinx Build
+          run: |
+            cd 'docs'
+            make html
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+        - name: Setup Pages
+          uses: actions/configure-pages@v5
 
-      - name: Upload GitHub Pages Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "docs/_build/html"
+        - name: Upload GitHub Pages Artifact
+          uses: actions/upload-pages-artifact@v3
+          with:
+            path: "docs/_build/html"
 
-      - name: Deploy GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        - name: Deploy GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v4
 
-This makes sure that the documentation will be built and updated onto the url only when you push changes on to your **main** branch.
+This makes sure that the documentation will be built and updated onto the GitHub page url only when you push changes on to your **main** branch.
 
 6. To check the result, go to ``https://user_name.github.io/sphinx_demo/``, replace user_name with your GitHub username.
 Also, if something fails, you can click on the "Actions" tab from the repository, and check the error.
 
-Now, if you make any changes and then push to the 'main' branch of the repository, the website will automatically update the documentation.
+Now, if you make any changes and then push to the **main** branch of the repository, the website will automatically update the documentation.
 
 Notes
 ****************
 To ensure a better result:
 
 * Have proper documentation for your code. This includes doc strings.
-* Make sure that your doc strings follow a standard, eg. PEP, Google, Numpy, etc. This guide followed Google doc string conventions.
+* Make sure that your doc strings follow a standard, eg. PEP, Google, Numpy, etc. This guide followed `Google doc string conventions <https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html>`_.
 * Highly recommended to use a linter for both your code and docs, like `Ruff <https://docs.astral.sh/ruff/#testimonials>`_.
 
 
