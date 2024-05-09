@@ -7,6 +7,8 @@ and in-code documentation into various output formats like HTML, PDF, LaTeX, man
 
 This guide will show you the framework to easily create and streamline documentation for your Python project on a Git repository, using Sphinx.
 
+The tutorial result should look like `this <https://elpham6.github.io/sphinx_demo/>`_.
+
 Tutorial
 ********
 
@@ -19,8 +21,6 @@ Tutorial
 To ``pip`` install:
 - For Linux, macOS or Windows, run ``pip install -U sphinx``
 
-(It is recommended that you use a virtual environment when you pip install. To create a virtual environment in the ``.venv`` directory, run ``python -m venv .venv``.)
-
 For installation options not mentioned, refer to the `documentation <https://www.sphinx-doc.org/en/master/usage/installation.html>`_ for more information.
 
 2. Create a Git repository
@@ -28,15 +28,12 @@ For installation options not mentioned, refer to the `documentation <https://www
 
 1. Create a Git repository using this `template <https://github.com/new?template_name=sphinx_template&template_owner=elpham6>`_. Put whatever name you would like for the Repository name, and click Create repository.
 
-2. The repo's folder structure should have a ``docs`` and ``src`` folder.
+2. The repo's folder structure should have a ``docs``, ``src`` and ``examples`` folder.
 
 ``docs`` contain your files for Sphinx documentation. ``src`` should contain your code.
 ``examples`` contain some example modules.
 
-In this guide, the ``src`` folder should have a **calculator.py** and **helloworld.py** file for demo purposes.
-
-**Note on folder structure**: You can employ different directory structures depending on the need for your project. Search for existing packages and Git repo conventions guides, such as `this <https://github.com/kriasoft/Folder-Structure-Conventions>`_
-for more references.
+In this guide, the ``src`` folder should have a **calculator.py** and **helloworld.py** file, and the ``examples`` folder has a **calc_example.py** file for demo purposes.
 
 3. Setting Up Documentation Sources
 ====================================
@@ -262,6 +259,8 @@ A readme file is necessary for sphinx_gallery to generate documentation. Copy/pa
     ###################
 
     This folder contains example code for the **calculator.py** module.
+
+
 
 
 5. From ``docs``, run ``make html``. There is a new folder called ``auto_examples`` created in ``docs``, with all the generated
