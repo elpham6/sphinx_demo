@@ -126,9 +126,9 @@ For this tutorial, add the following extensions to the ``extensions`` list in **
 
   
   
-  Make sure to change "user_name" to your username or the name of the repo owner.
+Make sure to change "user_name" to your username or the name of the repo owner.
   
-  Then, add the ``linkcode`` settings:
+Then, add the ``linkcode`` settings:
 
 .. code-block:: python
 
