@@ -207,8 +207,7 @@ You can also move back and forth between the sections of the documentation using
 
 Let's create a section called Demo Modules Overview, where we can write more explanation on the code. 
 
-1. In ``docs``, create a file called **overview.rst**, **overview.calculator.rst** and **overview.helloworld.rst**.
-For this turorial, simply copy the files from the ``docs`` folder of `this <https://github.com/elpham6/sphinx_demo/tree/main/docs>`_ repo to your own repo.
+1. In ``docs``, create a file called **overview.rst**, **overview.calculator.rst** and **overview.helloworld.rst**. For this turorial, simply copy the files from the ``docs`` folder of `this <https://github.com/elpham6/sphinx_demo/tree/main/docs>`_ repo to your own repo.
 
 2. To add this Demo Modules Overview section, open **index.rst**. Add **overview** to the top of the ``toctree``.
 
