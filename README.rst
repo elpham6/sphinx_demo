@@ -140,7 +140,7 @@ For this tutorial, add the following extensions to the ``extensions`` list in **
     # link to the source module/code on github
     return f"https://github.com/{html_context['github_user']}/{html_context['github_repo']}/blob/{html_context['github_version']}/{html_context['conf_py_path']}/{filename}.py"
 
-Adjust the config according to your folder structure and names. If you would like an output other than HTML, refer to Sphinx's `configuration documentation <https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output>`_.
+Adjust the config according to your folder structure and names. If you would like an output other than HTML, refer to Sphinx's `configuration documentation <https://www.sphinx-doc.org/en/master/usage/configuration.html>`_.
 
 
 5.3 Theme (Optional)
