@@ -127,7 +127,7 @@ For this tutorial, add the following extensions to the ``extensions`` list in **
     "github_user": "elpham6",  # Username of repo's owner
     "github_repo": "sphinx_demo",  # Repo name
     "github_version": "main",  # Version
-    "conf_py_path": ".",  # Path in the checkout to the docs root
+    "conf_py_path": "/src/",  # Path in the checkout to the code's root
     }
 
   
@@ -142,6 +142,7 @@ For this tutorial, add the following extensions to the ``extensions`` list in **
         return None
     filename = info['module'].replace('.', '/')
     # return "https://somesite/sourcerepo/%s.py" % filename
+    # link to the source module/code on github
     return f"https://github.com/{html_context['github_user']}/{html_context['github_repo']}/blob/{html_context['github_version']}/{html_context['conf_py_path']}/{filename}.py"
 
 Adjust the config according to your folder structure and names. If you would like a different type of output, refer to Sphinx's `configuration documentation <https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output>`_.
