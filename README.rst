@@ -253,7 +253,7 @@ Let's create a section for some example codes. We will use ``sphinx_gallery`` ex
     }
 
 4. In the ``examples`` folder, create a **README.rst** or **README.txt** file. 
-You can add anything; it is just a requirement for sphinx_gallery. For example:
+A readme file is necessary for sphinx_gallery to generate documentation. Copy/paste this text:
 
 .. code-block:: rst
 
@@ -262,7 +262,10 @@ You can add anything; it is just a requirement for sphinx_gallery. For example:
 
     This folder contains example code for the **calculator.py** module.
 
-5. In ``docs/index.rst``, add the new automatically created index file:
+5. From ``docs``, run ``make html``. There is a new folder called ``auto_examples`` created in ``docs``, with all the generated
+documentation for modules in the ``examples`` folder.
+
+6. In ``docs/index.rst``, add the new automatically created index file:
 
 .. code-block:: rst
 
@@ -278,12 +281,12 @@ You can add anything; it is just a requirement for sphinx_gallery. For example:
 
       auto_examples/index
 
-6. From ``docs``, run ``make html`` again. 
+7. From ``docs``, run ``make html`` again. 
 
 You can now see the example code, with links to download the module. 
 
 **Note**: the docstring at the top of **calc_example.py** is in .rst format. That is because Sphinx automatically generates a .rst file from the .py file.
-You can see that this docstring became the title and content of the page. This leaves room for you to add more documentation or diagrams.  
+You can see that this docstring is formatted into the page. This means you can add other things, such as diagrams here as well.
 
 There are a lot of other things you can do with Sphinx to customize your documentation website.
 
