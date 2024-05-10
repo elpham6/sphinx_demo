@@ -296,8 +296,7 @@ To add more pages:
 
 2. In the ``docs`` folder, run ``make html`` again. 
 
-3. Go to ``docs/_build/html`` and view the results. You will see the homepage showing the ``calculator`` and ``helloworld`` modules' content.
-  You can also move back and forth between the sections of the documentation using the "Next" or "Previous" buttons.
+3. Go to ``docs/_build/html`` and view the results. You will see the homepage showing the ``calculator`` and ``helloworld`` modules' content. You can also move back and forth between the sections of the documentation using the "Next" or "Previous" buttons.
 
 8.2. Adding Another Section
 ---------------------------
