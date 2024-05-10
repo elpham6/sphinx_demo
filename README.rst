@@ -36,10 +36,12 @@ For installation options not mentioned, refer to the `documentation <https://www
 
 In this guide, the ``src`` folder should have a **calculator.py** and **helloworld.py** file, and the ``examples`` folder has a **calc_example.py** file for demo purposes.
 
+3. Run ``git clone <repo link>`` to clone the repo you just made. 
+
 3. Setting Up Documentation Sources
 ====================================
 
-- Change your directory location to the ``docs`` folder.
+- In the repo, change your directory location to the ``docs`` folder (run ``cd docs``).
 
 - Run ``sphinx-quickstart``. You will be prompted with the following:
 
@@ -60,12 +62,11 @@ This will create a default configuration ``conf.py`` file, the make files and ``
 
 - Go back to the root directory (run ``cd ..``).
 
-- Run ``sphinx-apidoc -o output_dir package_dir``
+- Run ``sphinx-apidoc -o docs src``.
 
-Here, `-o` flag is for the ``output_dir``, which is ``docs`` in this case, and ``package_dir`` is the directory with all the modules you want to document.
-In this case, it is ``src``.
+Here, ``docs`` is for the output directory where all your documentation goes, and ``src`` is the directory with all the modules you want to document.
 
-This will create .rst files for each Python module in the specified ``package_dir``.
+This will create .rst files for each Python module in ``src``.
 
 5. Config Specifications
 ========================
@@ -106,7 +107,7 @@ For this tutorial, add the following extensions to the ``extensions`` list in **
 
   Since this example uses Google-style doc string, add:
 
-    `` napoleon_google_docstring = True ``
+    ``napoleon_google_docstring = True``
 
   to the **conf.py** file.
 
@@ -170,136 +171,13 @@ This tutorial uses a Sphinx theme called `Read the Docs <https://sphinx-themes.o
 
 4. If you make any changes to your code or documentation, simply run ``make html`` again from the **docs** folder to update your documentation.
 
-7. Adding More Pages
-=====================
-
-The default options in Sphinx produce a great template, but you want to add and adjust content in order to produce a better website.
-
-To add other pages to your Sphinx website, simply create `.rst` files in ``docs``, then add them to the ``toctree`` of ``index.rst``, or to the ``toctree`` of a file listed/included in ``index.rst``.
-
-Below are some examples of what you can add to the documentation.
-
-7.1. Showing More Content on Homepage
---------------------------------------
-
-By default, when you view your homepage, you will only see the index menu and not the content of your code.
-To see the contents of your modules, open ``index.rst`` and manually add `.rst` file names to Contents:
-
-.. code-block:: rst
-
-    .. toctree::
-      :maxdepth: 4
-      :caption: Contents:
-
-      calculator
-
-      helloworld
-
-Now, when you run ``make html`` again, you will see the homepage showing the ``calculator`` and ``helloworld`` modules' content.
-You can also move back and forth between the sections of the documentation using the "Next" or "Previous" buttons.
-
-7.2. Adding Another Section
----------------------------
-
-Let's create a section called Demo Modules Overview, where we can write more explanation on the code. 
-
-1. In ``docs``, create a file called **overview.rst**, **overview.calculator.rst** and **overview.helloworld.rst**. For this turorial, simply copy the files from the ``docs`` folder of `this <https://github.com/elpham6/sphinx_demo/tree/main/docs>`_ repo to your own repo.
-
-2. To add this Demo Modules Overview section, open **index.rst**. Add **overview** to the top of the ``toctree``.
-
-.. code-block:: rst
-
-    .. toctree::
-      :maxdepth: 4
-      :caption: Contents:
-      
-      overview
-
-      calculator
-
-      helloworld
-  
-3. Run ``make html`` from ``docs`` again. 
-
-4. Go to ``docs/_build/html`` and view the results. 
-
-You will see a new section called "Demo Modules Overview" with an index, showing content from **overview.calculator.rst** and **overview.helloworld.rst**.
-It is easy to add new pages and new sections to the website.
-
-7.3. Adding Examples
---------------------
-
-Let's create a section for some example codes. We will use ``sphinx_gallery`` extension here.
-
-1. Install sphinx_gallery: ``pip install sphinx_gallery``.
-
-2. Open **conf.py**. Add "sphinx_gallery.gen_gallery" to the ``extensions`` list.
-
-3. Add the sphinx_gallery config to **conf.py**:
-
-   .. code-block:: python
-         
-      sphinx_gallery_conf = {
-          # path to your example scripts
-          'examples_dirs': ['../examples'],
-          # path to where to save gallery generated output
-          'gallery_dirs': ['auto_examples'],
-          'filename_pattern': '.py',
-          'plot_gallery': 'False',
-      }
-
-4. In the ``examples`` folder, create a **README.rst** or **README.txt** file. 
-   A readme file is necessary for sphinx_gallery to generate documentation. Copy/paste this text:
-
-   .. code-block:: rst
-
-      Calculator Examples
-      ###################
-
-      This folder contains example code for the **calculator.py** module.
-
-5. From ``docs``, run ``make html``. There is a new folder called ``auto_examples`` created in ``docs``, with all the generated
-   documentation for modules in the ``examples`` folder.
-
-
-6. In ``docs/index.rst``, add the new automatically created index file:
-
-.. code-block:: rst
-
-    .. toctree::
-      :maxdepth: 4
-      :caption: Contents:
-      
-      overview
-
-      calculator
-
-      helloworld
-
-      auto_examples/index
-
-7. From ``docs``, run ``make html`` again. 
-
-You can now see the example code, with links to download the module. 
-
-**Note**: the docstring at the top of **calc_example.py** is in .rst format. That is because Sphinx automatically generates a .rst file from the .py file.
-You can see that this docstring is formatted into the page. This means you can add other things, such as diagrams here as well.
-
-There are a lot of other things you can do with Sphinx to customize your documentation website.
-
-* For more instructions on defining document structure, refer to
-  `Defining Docuement Structure <https://www.sphinx-doc.org/en/master/usage/quickstart.html#defining-document-structure>`_.
-
-* For instructions on how to format reStructuredText, refer to
-  `reStructuredText Basics <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_.
-
-8. Deploying to GitHub Pages
+7. Deploying to GitHub Pages
 ============================
 
 To automatically update the documentation on the website whenever you update your work, one way to do it is set up GitHub Action to trigger every time you push changes to the **main** branch of your repo.
 This streamlines the process of keeping your documentation up-to-date.
 
-8.1. Enable GitHub Pages
+7.1. Enable GitHub Pages
 -------------------------
 1. In your GitHub repository, click on **Settings**.
 
@@ -307,7 +185,7 @@ This streamlines the process of keeping your documentation up-to-date.
 
 3. In the "Source" drop down menu, choose "GitHub Actions".
 
-8.2. Set Up GitHub Actions
+7.2. Set Up GitHub Actions
 --------------------------
 
 1. Move to the root directory of the repo.
@@ -381,13 +259,141 @@ If you add any more Sphinx extensions that needs to be installed, simply add the
 
 For example, ``pip install sphinx sphinx_rtd_theme`` means that the action will install sphinx, and sphinx_rtd_theme.
 
-8.3. Check the Documentation Results
+7.3. Check the Documentation Results
 -------------------------------------
 To check the result, go to https://user_name.github.io/sphinx_demo/, replace user_name with your GitHub username.
 
 Also, if something fails, you can click on the "Actions" tab from the repository, and check for the error.
 
 Now, if you make any changes and then push to the **main** branch of the repository, the website will automatically update the documentation.
+
+8. Adding Content (optional)
+============================
+
+The default options in Sphinx produce a nice template, but you want to add and adjust content in order to produce a better website.
+
+To add other pages to your Sphinx website, simply create `.rst` files in ``docs``, then add them to the ``toctree`` of ``index.rst``, or to the ``toctree`` of a file listed/included in ``index.rst``.
+
+Below are some examples of what you can add to the documentation.
+
+8.1. Adding Content on Homepage
+----------------------------------
+
+By default, when you view your homepage, you will only see the index menu and not the content of your code.
+To add more pages:
+
+1. Open ``index.rst`` and manually add `.rst` file names to the Contents of ``toctree``:
+
+.. code-block:: rst
+
+    .. toctree::
+      :maxdepth: 4
+      :caption: Contents:
+
+      calculator
+
+      helloworld
+
+2. In the ``docs`` folder, run ``make html`` again. 
+
+3. Go to ``docs/_build/html`` and view the results. You will see the homepage showing the ``calculator`` and ``helloworld`` modules' content.
+You can also move back and forth between the sections of the documentation using the "Next" or "Previous" buttons.
+
+8.2. Adding Another Section
+---------------------------
+
+Let's add a section called Demo Modules Overview, where we can write more explanation on the code. 
+
+1. In ``docs``, create a file called **overview.rst**, **overview.calculator.rst** and **overview.helloworld.rst**. For this turorial, simply copy the files from the ``docs`` folder of `this <https://github.com/elpham6/sphinx_demo/tree/main/docs>`_ repo to your own repo.
+
+2. To add this section to the website, open **index.rst**. Add **overview** to the top of the ``toctree``.
+
+.. code-block:: rst
+
+    .. toctree::
+      :maxdepth: 4
+      :caption: Contents:
+      
+      overview
+
+      calculator
+
+      helloworld
+  
+3. Run ``make html`` from ``docs`` again. 
+
+4. Go to ``docs/_build/html`` and view the results. 
+
+You will see a new section called "Demo Modules Overview" with an index, showing content from **overview.calculator.rst** and **overview.helloworld.rst**.
+It is easy to add new pages and new sections to the website.
+
+8.3. Adding Examples
+---------------------
+
+Let's create a section for some example codes. We will use ``sphinx_gallery`` extension here.
+
+1. Install sphinx_gallery: ``pip install sphinx_gallery``.
+
+2. Open **conf.py**. Add "sphinx_gallery.gen_gallery" to the ``extensions`` list.
+
+3. Add the sphinx_gallery config to **conf.py**:
+
+   .. code-block:: python
+         
+      sphinx_gallery_conf = {
+          # path to your example scripts
+          'examples_dirs': ['../examples'],
+          # path to where to save gallery generated output
+          'gallery_dirs': ['auto_examples'],
+          'filename_pattern': '.py',
+          'plot_gallery': 'False',
+      }
+
+4. In the ``examples`` folder, create a **README.rst** or **README.txt** file. 
+   A readme file is necessary for sphinx_gallery to generate documentation. Copy/paste this text:
+
+   .. code-block:: rst
+
+      Calculator Examples
+      ###################
+
+      This folder contains example code for the **calculator.py** module.
+
+5. From ``docs``, run ``make html``. There is a new folder called ``auto_examples`` created in ``docs``, with all the generated
+   documentation for modules in the ``examples`` folder.
+
+
+6. In ``docs/index.rst``, add the new automatically created index file:
+
+.. code-block:: rst
+
+    .. toctree::
+      :maxdepth: 4
+      :caption: Contents:
+      
+      overview
+
+      calculator
+
+      helloworld
+
+      auto_examples/index
+
+7. From ``docs``, run ``make html`` again. 
+
+You can now see the example code, with links to download the module. 
+
+**Note**: the docstring at the top of **calc_example.py** is in .rst format. That is because Sphinx automatically generates a .rst file from the .py file.
+You can see that this docstring is formatted into the page. This means you can add other things, such as diagrams here as well.
+
+There are a lot of other things you can do with Sphinx to customize your documentation website.
+
+* For more instructions on defining document structure, refer to
+  `Defining Docuement Structure <https://www.sphinx-doc.org/en/master/usage/quickstart.html#defining-document-structure>`_.
+
+* For instructions on how to format reStructuredText, refer to
+  `reStructuredText Basics <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_.
+
 
 Notes
 ****************
